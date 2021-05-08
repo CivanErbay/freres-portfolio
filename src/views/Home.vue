@@ -2,6 +2,6 @@
   <div id="home">
     <img class="logo" src="../assets/logo.png" alt="logo" />
 
-    <h1>👋Hello world🌎</h1>
+    <h1>hannafreres</h1>
   </div>
 </template>
