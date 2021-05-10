@@ -62,12 +62,33 @@ export default {
     position: absolute;
     color: white;
     font-weight: 300;
+    top: 30px;
+    left: 40px;
+
+    @include bp(phablet) {
+      font-size: 45px;
+      left: 90px;
+      top: 85px; 
+      color: black;
+    }
+
+    @include bp(tablet) {
+      font-size: 55px;
+      left: 70px;
+      top: 40px;
+      color: white;
+    }
+
+    @include bp(laptop) {
+      font-size: 80px;
+      left: 70px;
+      top: 40px;
+    }
 
     @include bp(desktop) {
-      position: absolute;
-      font-size: 75px;
-      top: 30px;
-      left: 75px;
+      font-size: 100px;
+      left: 100px;
+      top: 60px;
       cursor: pointer;
     }
   }
