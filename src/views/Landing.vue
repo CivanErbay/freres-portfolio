@@ -18,8 +18,10 @@ export default {
   data() {
     return {
       showBackdrop: false,
+      isMobile: false
     };
   },
+  props: ["closeBackdrop"],
   methods: {
     onClickHeadline: function (e) {
       this.$emit("clickedHeadline");
@@ -30,6 +32,14 @@ export default {
       this.showBackdrop = false;
     },
   },
+  watch: {
+    showBackdrop: function() {
+      if(this.isMobile) this.showBackdrop = false;
+    }
+  },
+  mounted() {
+     if(window.innerWidth < 768) this.isMobile = true;
+  }
 };
 </script>
 
@@ -68,7 +78,7 @@ export default {
     @include bp(phablet) {
       font-size: 45px;
       left: 90px;
-      top: 85px; 
+      top: 85px;
       color: black;
     }
 

@@ -5,6 +5,9 @@
       <a class="portraits">portraits</a>
       <a class="space">space</a>
       <a class="about">about</a>
+      <button class="close-button" v-if="isMobile" @click="navActive = false">
+        <div class="close-circle"></div>
+      </button>
     </div>
     <Landing
       @clickedHeadline="navActive = true"
@@ -22,14 +25,19 @@ export default {
   data() {
     return {
       navActive: false,
+      isMobile: false,
     };
   },
   methods: {},
+  mounted() {
+    if (window.innerWidth < 768) this.isMobile = true;
+  },
 };
 </script>
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap");
+@import "./scss/breakpoints.scss";
 
 :root {
   --font: Open-sans, sans-serif;
@@ -49,16 +57,40 @@ body {
 }
 
 .nav {
-  transform: translateY(-700px);
-  position: absolute;
-  transition: ease-out 0.9s;
-  width: 100%;
-  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
   z-index: 2;
   background-color: black;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  height: 100vh;
+  width: 100%;
+  transition: ease-out 0.9s;
+  transform: translateX(-100%);
+  position: absolute;
+
+  .close-button {
+    border: none;
+    background-color: black;
+    bottom: 20px;
+    right: 20px;
+    position: absolute;
+  }
+
+  .close-circle {
+    width: 35px;
+    height: 35px;
+    border: solid white 5px;
+    border-radius: 50%;
+  }
+
+  @include bp(phablet) {
+    transform: translateY(-100%);
+    height: 450px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
 
   &--active {
     transform: translateY(0);
@@ -73,12 +105,18 @@ body {
     cursor: pointer;
 
     &:first-child {
-      margin-left: 150px;
+      @include bp(phablet) {
+        margin-left: 150px;
+      }
+    }
+
+    &:last-of-type {
+      margin: 0;
     }
 
     &.about {
-      right: 30px;
-      top: 50px;
+      right: 20px;
+      top: 20px;
       font-size: 30px;
       position: absolute;
     }
@@ -86,42 +124,64 @@ body {
 
   .nudes:after {
     content: "";
-    width: 80px;
-    height: 4px;
+    width: 5px;
+    height: 80px;
     background-color: white;
-    display: block;
+    display: inline-block;
     position: relative;
-    bottom: -40px;
+    left: -114px;
+
+    @include bp(phablet) {
+      width: 80px;
+      height: 4px;
+      display: block;
+      bottom: -40px;
+      left: unset;
+    }
   }
   .portraits:after {
     content: "";
-    width: 70px;
-    height: 4px;
+    width: 5px;
+    height: 70px;
     background-color: white;
-    display: block;
+    display: inline-block;
     position: relative;
-    bottom: -20px;
+    left: -154px;
+
+    @include bp(phablet) {
+      width: 70px;
+      height: 4px;
+      display: block;
+      bottom: -20px;
+      left: unset;
+    }
   }
   .space:after {
     content: "";
-    width: 50px;
-    height: 4px;
+    width: 5px;
+    height: 50px;
     background-color: white;
-    display: block;
+    display: inline-block;
     position: relative;
-    bottom: -5px;
+    left: -110px;
+
+    @include bp(phablet) {
+      left: unset;
+      width: 50px;
+      height: 4px;
+      display: block;
+    }
   }
-
-  .about:before {
-    left: -13px;
-    content: "";
-    width: 4px;
-    height: 30px;
-    background-color: white;
-    display: block;
-    position: absolute;
-}
-
-
+  @include bp(phablet) {
+    .about:before {
+      left: -13px;
+      content: "";
+      width: 4px;
+      height: 30px;
+      background-color: white;
+      display: block;
+      position: absolute;
+    }
+  }
 }
 </style>
