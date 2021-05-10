@@ -6,7 +6,7 @@
         v-if="showBackdrop"
         @click="onClickBackdrop()"
         class="backdrop"
-        :class="{'backdrop--active': showBackdrop}"
+        :class="{ 'backdrop--active': showBackdrop }"
       ></div>
     </transition>
   </div>
@@ -34,24 +34,42 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../scss/breakpoints.scss";
+
 .landing-wrapper {
-  padding: 0;
-  margin: 0;
-  width: 100vw;
-  height: 100vh;
-  background: url("../assets/img1.jpeg") no-repeat 0 0;
+  background: url("../assets/img3.jpeg") no-repeat 0 0;
   background-position: center;
   background-size: cover;
   position: relative;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+
+  @include bp(phablet) {
+    background: url("../assets/img4.jpeg") no-repeat 0 0;
+    background-position: center;
+    background-size: cover;
+  }
+
+  @include bp(tablet) {
+    background: url("../assets/img1.jpeg") no-repeat 0 0;
+    background-position: center;
+    background-size: cover;
+  }
 
   .headline-link {
     position: absolute;
-    font-weight: 300;
-    font-size: 75px;
     color: white;
-    top: 30px;
-    left: 75px;
-    cursor: pointer;
+    font-weight: 300;
+
+    @include bp(desktop) {
+      position: absolute;
+      font-size: 75px;
+      top: 30px;
+      left: 75px;
+      cursor: pointer;
+    }
   }
 
   .backdrop {
@@ -60,12 +78,7 @@ export default {
     z-index: 1;
     background-color: rgba($color: #000000, $alpha: 0.8);
     transition: opacity 0.5s ease-in;
-
-   /*  &--active {
-      opacity: 0.8;
-    } */
   }
-
 
   .fade-enter-active,
   .fade-leave-active {
@@ -74,6 +87,6 @@ export default {
   .fade-enter,
   .fade-leave-to {
     opacity: 0.5;
-  } 
+  }
 }
 </style>
