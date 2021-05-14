@@ -4,31 +4,39 @@
       <a class="nudes">nudes</a>
       <a class="portraits">portraits</a>
       <a class="space">space</a>
-      <a class="about">about</a>
+      <a @click="changeComponent('About')" class="about">about</a>
       <button class="close-button" v-if="isMobile" @click="navActive = false">
         <div class="close-circle"></div>
       </button>
     </div>
-    <Landing
+    <component
       @clickedHeadline="navActive = true"
       @clickedBackdrop="navActive = false"
-    ></Landing>
+      :is="currentComponent"
+    ></component>
   </div>
 </template>
 
 <script>
 import Landing from "./views/Landing.vue";
+import About from "./views/About.vue";
 
 export default {
   name: "App",
-  components: { Landing },
+  components: { Landing, About },
   data() {
     return {
       navActive: false,
       isMobile: false,
+      currentComponent: 'Landing',
     };
   },
-  methods: {},
+  methods: {
+    changeComponent: function(compName) {
+      this.currentComponent = compName;
+      this.navActive = false;
+    }
+  },
   mounted() {
     if (window.innerWidth < 768) this.isMobile = true;
   },
@@ -59,7 +67,7 @@ body {
 .nav {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   align-items: flex-start;
   z-index: 2;
   background-color: black;
@@ -72,15 +80,15 @@ body {
   .close-button {
     border: none;
     background-color: black;
-    bottom: 20px;
+    bottom: 35px;
     right: 20px;
     position: absolute;
   }
 
   .close-circle {
-    width: 35px;
-    height: 35px;
-    border: solid white 5px;
+    width: 15px;
+    height: 15px;
+    border: solid white 3px;
     border-radius: 50%;
   }
 
@@ -98,11 +106,16 @@ body {
 
   a {
     font-weight: bold;
-    font-size: 36px;
+    font-size: 24px;
     color: white;
-    margin: 0 35px;
+    margin: 35px;
     text-decoration: none;
     cursor: pointer;
+
+    @include bp(phablet) {
+      font-size: 36px;
+      margin: 0 35px;
+    }
 
     &:first-child {
       @include bp(phablet) {
@@ -124,12 +137,12 @@ body {
 
   .nudes:after {
     content: "";
-    width: 5px;
-    height: 80px;
+    width: 4px;
+    height: 40px;
     background-color: white;
     display: inline-block;
     position: relative;
-    left: -114px;
+    left: -77px;
 
     @include bp(phablet) {
       width: 80px;
@@ -141,12 +154,12 @@ body {
   }
   .portraits:after {
     content: "";
-    width: 5px;
-    height: 70px;
+    width: 4px;
+    height: 30px;
     background-color: white;
     display: inline-block;
     position: relative;
-    left: -154px;
+    left: -103px;
 
     @include bp(phablet) {
       width: 70px;
@@ -158,12 +171,12 @@ body {
   }
   .space:after {
     content: "";
-    width: 5px;
-    height: 50px;
+    width: 4px;
+    height: 20px;
     background-color: white;
     display: inline-block;
     position: relative;
-    left: -110px;
+    left: -74px;
 
     @include bp(phablet) {
       left: unset;
