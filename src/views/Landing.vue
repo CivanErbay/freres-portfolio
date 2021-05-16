@@ -1,14 +1,6 @@
 <template>
   <div id="landing" class="landing-wrapper">
     <h1 @click="onClickHeadline()" class="headline-link">hannafreres</h1>
-    <transition name="fade">
-      <div
-        v-if="showBackdrop"
-        @click="onClickBackdrop()"
-        class="backdrop"
-        :class="{ 'backdrop--active': showBackdrop }"
-      ></div>
-    </transition>
   </div>
 </template>
 
@@ -18,28 +10,19 @@ export default {
   data() {
     return {
       showBackdrop: false,
-      isMobile: false
+      isMobile: false,
     };
   },
-  props: ["closeBackdrop"],
   methods: {
     onClickHeadline: function (e) {
       this.$emit("clickedHeadline");
       this.showBackdrop = true;
     },
-    onClickBackdrop: function (e) {
-      this.$emit("clickedBackdrop");
-      this.showBackdrop = false;
-    },
   },
-  watch: {
-    showBackdrop: function() {
-      if(this.isMobile) this.showBackdrop = false;
-    }
-  },
+
   mounted() {
-     if(window.innerWidth < 768) this.isMobile = true;
-  }
+    if (window.innerWidth < 768) this.isMobile = true;
+  },
 };
 </script>
 
@@ -74,12 +57,16 @@ export default {
     font-weight: 300;
     top: 30px;
     left: 40px;
+    letter-spacing: 7px;
+    opacity: 0.7;
+    font-size: 25px;
+    cursor: pointer;
 
     @include bp(phablet) {
-      font-size: 45px;
+      font-size: 38px;
       left: 90px;
       top: 85px;
-      color: black;
+      color: white;
     }
 
     @include bp(tablet) {
@@ -101,9 +88,19 @@ export default {
       top: 60px;
       cursor: pointer;
     }
+
+    /* &:before {
+      content: "";
+      width: 99px;
+      height: 1px;
+      background-color: white;
+      display: block;
+      position: relative;
+      bottom: -44px;
+    } */
   }
 
-  .backdrop {
+  /*  .backdrop {
     width: 100vw;
     height: 100vh;
     z-index: 1;
@@ -118,6 +115,6 @@ export default {
   .fade-enter,
   .fade-leave-to {
     opacity: 0.5;
-  }
+  } */
 }
 </style>

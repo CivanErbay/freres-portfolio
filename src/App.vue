@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <div class="nav" :class="{ 'nav--active': navActive }">
-      <a class="nudes">nudes</a>
+      <a
+        @click="changeComponent('Nudes')"
+        class="nudes"
+        :class="{ 'nudes--active': currentComponent == 'Nudes' }"
+        >nudes</a
+      >
       <a class="portraits">portraits</a>
       <a class="space">space</a>
       <a @click="changeComponent('About')" class="about">about</a>
@@ -12,30 +17,53 @@
     <component
       @clickedHeadline="navActive = true"
       @clickedBackdrop="navActive = false"
+      @clickedCircle="navActive = true"
       :is="currentComponent"
     ></component>
+    <transition name="fade">
+      <div
+        v-if="showBackdrop"
+        @click="onClickBackdrop()"
+        class="backdrop"
+        :class="{ 'backdrop--active': showBackdrop }"
+      ></div>
+    </transition>
   </div>
 </template>
 
 <script>
 import Landing from "./views/Landing.vue";
 import About from "./views/About.vue";
+import Nudes from "./views/Nudes.vue";
 
 export default {
   name: "App",
-  components: { Landing, About },
+  components: { Landing, About, Nudes },
   data() {
     return {
       navActive: false,
+      showBackdrop: false,
       isMobile: false,
-      currentComponent: 'Landing',
+      currentComponent: "Landing",
     };
   },
   methods: {
-    changeComponent: function(compName) {
+    changeComponent: function (compName) {
       this.currentComponent = compName;
       this.navActive = false;
-    }
+    },
+    onClickBackdrop: function (e) {
+      this.navActive = false;
+      this.showBackdrop = false;
+    },
+  },
+  watch: {
+    navActive: function () {
+      this.navActive ? (this.showBackdrop = true) : (this.showBackdrop = false);
+    },
+    showBackdrop: function () {
+      if (this.isMobile) this.showBackdrop = false;
+    },
   },
   mounted() {
     if (window.innerWidth < 768) this.isMobile = true;
@@ -94,7 +122,7 @@ body {
 
   @include bp(phablet) {
     transform: translateY(-100%);
-    height: 450px;
+    height: 390px;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
@@ -135,66 +163,137 @@ body {
     }
   }
 
-  .nudes:after {
-    content: "";
-    width: 4px;
-    height: 40px;
-    background-color: white;
-    display: inline-block;
-    position: relative;
-    left: -77px;
+  .nudes {
+   /*  &--active {
+      :after {
+      UPCOMING TODO
+        }
+      }
+    } */
 
-    @include bp(phablet) {
-      width: 80px;
-      height: 4px;
-      display: block;
-      bottom: -40px;
-      left: unset;
+    &:after {
+      content: "";
+      width: 4px;
+      height: 40px;
+      background-color: white;
+      display: inline-block;
+      position: relative;
+      left: -77px;
+
+      @include bp(phablet) {
+        width: 70px;
+        height: 4px;
+        display: block;
+        bottom: -5px;
+        left: unset;
+        transition: bottom 0.3s ease-in;
+      }
+    }
+    &:hover {
+      &:after {
+        @include bp(phablet) {
+          bottom: -20px;
+        }
+      }
     }
   }
-  .portraits:after {
-    content: "";
-    width: 4px;
-    height: 30px;
-    background-color: white;
-    display: inline-block;
-    position: relative;
-    left: -103px;
-
-    @include bp(phablet) {
-      width: 70px;
-      height: 4px;
-      display: block;
-      bottom: -20px;
-      left: unset;
-    }
-  }
-  .space:after {
-    content: "";
-    width: 4px;
-    height: 20px;
-    background-color: white;
-    display: inline-block;
-    position: relative;
-    left: -74px;
-
-    @include bp(phablet) {
-      left: unset;
-      width: 50px;
-      height: 4px;
-      display: block;
-    }
-  }
-  @include bp(phablet) {
-    .about:before {
-      left: -13px;
+  .portraits {
+    &:after {
       content: "";
       width: 4px;
       height: 30px;
       background-color: white;
-      display: block;
-      position: absolute;
+      display: inline-block;
+      position: relative;
+      left: -103px;
+
+      @include bp(phablet) {
+        width: 70px;
+        height: 4px;
+        display: block;
+        bottom: -5px;
+        left: unset;
+        transition: bottom 0.3s ease-in;
+      }
+    }
+
+    &:hover {
+      &:after {
+        @include bp(phablet) {
+          bottom: -20px;
+        }
+      }
     }
   }
+  .space {
+    &:after {
+      content: "";
+      width: 4px;
+      height: 20px;
+      background-color: white;
+      display: inline-block;
+      position: relative;
+      left: -74px;
+
+      @include bp(phablet) {
+        width: 70px;
+        height: 4px;
+        display: block;
+        bottom: -5px;
+        left: unset;
+        transition: bottom 0.3s ease-in;
+      }
+    }
+    &:hover {
+      &:after {
+        @include bp(phablet) {
+          bottom: -20px;
+        }
+      }
+    }
+  }
+
+  .about {
+    @include bp(phablet) {
+      &:before {
+        left: -10px;
+        content: "";
+        width: 4px;
+        height: 30px;
+        background-color: white;
+        display: block;
+        position: absolute;
+        transition: left 0.3s ease-in;
+      }
+    }
+
+    &:hover {
+      &:before {
+        @include bp(phablet) {
+          left: -20px;
+        }
+      }
+    }
+  }
+}
+
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  transition: opacity 0.4s ease-in-out;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0.4;
 }
 </style>
