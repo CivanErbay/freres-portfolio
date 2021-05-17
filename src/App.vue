@@ -90,6 +90,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: var(--textColor);
+
+  .flex-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .flex-row {
+      display: flex;
+      flex-direction: column;
+
+      @include bp(phablet) {
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+      }
+    }
+  }
+
+  .only-phablet {
+    display: none;
+
+    @include bp(phablet) {
+      display: block;
+    }
+  }
 }
 
 .nav {
@@ -164,7 +189,7 @@ body {
   }
 
   .nudes {
-   /*  &--active {
+    /*  &--active {
       :after {
       UPCOMING TODO
         }
