@@ -30,7 +30,7 @@ export default {
 @import "../scss/breakpoints.scss";
 
 .landing-wrapper {
-  background: url("../assets/img3.jpeg") no-repeat 0 0;
+  background: url("../assets/nd_010.jpg") no-repeat 0 0;
   background-position: center;
   background-size: cover;
   position: relative;
@@ -40,13 +40,13 @@ export default {
   margin: 0;
 
   @include bp(phablet) {
-    background: url("../assets/img4.jpeg") no-repeat 0 0;
+    background: url("../assets/nd_011.jpg") no-repeat 0 0;
     background-position: center;
     background-size: cover;
   }
 
   @include bp(tablet) {
-    background: url("../assets/img1.jpeg") no-repeat 0 0;
+    background: url("../assets/nd_005.jpg") no-repeat 0 0;
     background-position: center;
     background-size: cover;
   }
@@ -88,33 +88,6 @@ export default {
       top: 60px;
       cursor: pointer;
     }
-
-    /* &:before {
-      content: "";
-      width: 99px;
-      height: 1px;
-      background-color: white;
-      display: block;
-      position: relative;
-      bottom: -44px;
-    } */
   }
-
-  /*  .backdrop {
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-    background-color: rgba($color: #000000, $alpha: 0.8);
-    transition: opacity 0.5s ease-in;
-  }
-
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity 0.5s;
-  }
-  .fade-enter,
-  .fade-leave-to {
-    opacity: 0.5;
-  } */
 }
 </style>

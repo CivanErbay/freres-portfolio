@@ -7,11 +7,11 @@
     <div class="nudes-wrapper--content flex-grid">
       <div class="flex-row">
         <div class="photo only-phablet"></div>
-        <img class="photo photo-l" src="../assets/img2.jpeg" alt="" srcset="" />
+        <img class="photo photo-l" src="../assets/nd_009.jpg" alt="" srcset="" />
       </div>
       <div class="flex-row">
-        <img class="photo photo-l" src="../assets/img4.jpeg" alt="" srcset="" />
-        <img class="photo photo-l" src="../assets/img3.jpeg" alt="" srcset="" />
+        <img class="photo photo-l" src="../assets/nd_011.jpg" alt="" srcset="" />
+        <img class="photo photo-l" src="../assets/nd_012.jpg" alt="" srcset="" />
       </div>
     </div>
   </div>
