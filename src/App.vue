@@ -115,6 +115,10 @@ body {
       display: block;
     }
   }
+
+  .full-width {
+    width: 100%;
+  }
 }
 
 .nav {

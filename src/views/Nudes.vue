@@ -7,11 +7,50 @@
     <div class="nudes-wrapper--content flex-grid">
       <div class="flex-row">
         <div class="photo only-phablet"></div>
-        <img class="photo photo-l" src="../assets/nd_009.jpg" alt="" srcset="" />
+        <img class="photo" src="../assets/nd_009.jpg" alt="" srcset="" />
       </div>
       <div class="flex-row">
-        <img class="photo photo-l" src="../assets/nd_011.jpg" alt="" srcset="" />
-        <img class="photo photo-l" src="../assets/nd_012.jpg" alt="" srcset="" />
+        <img class="photo" src="../assets/nd_011.jpg" alt="" srcset="" />
+        <img class="photo" src="../assets/nd_010.jpg" alt="" srcset="" />
+      </div>
+      <div class="flex-row">
+        <img
+          class="photo full-width"
+          src="../assets/nd_004.jpg"
+          alt=""
+          srcset=""
+        />
+      </div>
+      <div class="flex-row">
+        <img
+          class="photo"
+          style="position: relative; bottom: -33px"
+          src="../assets/nd_002.jpg"
+          alt=""
+          srcset=""
+        />
+        <img class="photo" src="../assets/nd_003.jpg" alt="" srcset="" />
+      </div>
+      <div class="flex-row">
+        <img
+          class="photo full-width"
+          src="../assets/nd_001.jpg"
+          alt=""
+          srcset=""
+        />
+      </div>
+      <div class="flex-row">
+        <img class="photo" src="../assets/nd_006.jpg" alt="" srcset="" />
+        <img class="photo" src="../assets/nd_007.jpg" alt="" srcset="" />
+      </div>
+
+      <div class="flex-row">
+        <img
+          class="photo full-width"
+          src="../assets/nd_005.jpg"
+          alt=""
+          srcset=""
+        />
       </div>
     </div>
   </div>
@@ -29,7 +68,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../scss/breakpoints.scss";
+
 .nudes-wrapper {
+  /*  margin: 0 100px;  */
+  /*  padding: 0 100px; */
   min-height: 100vw;
   height: 100%;
   width: 100vw;
@@ -62,9 +105,14 @@ export default {
   &--content {
     .photo {
       padding: 30px 0;
-      height: 80vh;
       width: 100%;
       object-fit: contain;
+      cursor: pointer;
+
+      @include bp(tablet) {
+        height: 80vh;
+        width: 620px;
+      }
 
       /*   &-l {
         height: 300px;
