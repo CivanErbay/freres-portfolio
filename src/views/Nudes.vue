@@ -5,15 +5,18 @@
       <div @click="onClickCircle" class="nav-circle"></div>
     </div>
     <div class="nudes-wrapper--content flex-grid">
-      <div class="flex-row">
+      <div class="flex-row height-l">
         <div class="photo only-phablet"></div>
         <img class="photo" src="../assets/nd_009.jpg" alt="" srcset="" />
       </div>
-      <div class="flex-row">
+      <div class="flex-row height-l">
         <img class="photo" src="../assets/nd_011.jpg" alt="" srcset="" />
         <img class="photo" src="../assets/nd_010.jpg" alt="" srcset="" />
       </div>
-      <div class="flex-row">
+
+      <div class="section-gap"><hr></div>
+
+      <div class="flex-row height-m">
         <img
           class="photo full-width"
           src="../assets/nd_004.jpg"
@@ -21,17 +24,12 @@
           srcset=""
         />
       </div>
-      <div class="flex-row">
-        <img
-          class="photo"
-          style="position: relative; bottom: -33px"
-          src="../assets/nd_002.jpg"
-          alt=""
-          srcset=""
-        />
+      <div class="flex-row height-s">
+        <img class="photo" src="../assets/nd_002.jpg" alt="" srcset="" />
         <img class="photo" src="../assets/nd_003.jpg" alt="" srcset="" />
       </div>
-      <div class="flex-row">
+
+      <div class="flex-row height-l">
         <img
           class="photo full-width"
           src="../assets/nd_001.jpg"
@@ -39,12 +37,16 @@
           srcset=""
         />
       </div>
-      <div class="flex-row">
+
+      <div class="section-gap"><hr></div>
+
+
+      <div class="flex-row height-s">
         <img class="photo" src="../assets/nd_006.jpg" alt="" srcset="" />
         <img class="photo" src="../assets/nd_007.jpg" alt="" srcset="" />
       </div>
 
-      <div class="flex-row">
+      <div class="flex-row height-l">
         <img
           class="photo full-width"
           src="../assets/nd_005.jpg"
@@ -71,8 +73,6 @@ export default {
 @import "../scss/breakpoints.scss";
 
 .nudes-wrapper {
-  /*  margin: 0 100px;  */
-  /*  padding: 0 100px; */
   min-height: 100vw;
   height: 100%;
   width: 100vw;
@@ -104,31 +104,18 @@ export default {
 
   &--content {
     .photo {
-      padding: 30px 0;
       width: 100%;
-      object-fit: contain;
+      object-fit: cover;
       cursor: pointer;
 
       @include bp(tablet) {
-        height: 80vh;
-        width: 620px;
-      }
+        width: 45%;
+        transition: all ease-in-out 1s;
 
-      /*   &-l {
-        height: 300px;
-        width: 100%;
-        object-fit: contain;
+        &:hover {
+          transform: scale(1.2);
+        }
       }
-      &-m {
-        height: 200px;
-        width: 100%;
-        object-fit: contain;
-      }
-      &-s {
-        height: 100px;
-        width: 100%;
-        object-fit: contain;
-      } */
     }
   }
 }

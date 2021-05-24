@@ -96,14 +96,43 @@ body {
     flex-direction: column;
     align-items: center;
 
+    @include bp(phablet) {
+      padding: 0 60px;
+    }
+
     .flex-row {
       display: flex;
       flex-direction: column;
+      margin: 30px 0;
 
       @include bp(phablet) {
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: space-between;
         width: 100%;
+        overflow: hidden;
+
+        &.height-s {
+          height: 40vh;
+        }
+        &.height-m {
+          height: 60vh;
+        }
+        &.height-l {
+          height: 80vh;
+        }
+      }
+    }
+
+    .section-gap {
+      @include bp(phablet) {
+        height: 250px;
+        width: 100%;
+        display: flex;
+        padding: 50px 0;
+
+        hr {
+          background: white;
+        }
       }
     }
   }
