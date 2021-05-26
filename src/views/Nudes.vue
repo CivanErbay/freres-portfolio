@@ -113,7 +113,7 @@ export default {
         transition: all ease-in-out 1s;
 
         &:hover {
-          transform: scale(1.2);
+          transform: scale(1.1);
         }
       }
     }
