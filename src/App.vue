@@ -105,22 +105,6 @@ body {
       flex-direction: column;
       margin: 30px 0;
 
-      @include bp(phablet) {
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-        overflow: hidden;
-
-        &.height-s {
-          height: 40vh;
-        }
-        &.height-m {
-          height: 60vh;
-        }
-        &.height-l {
-          height: 80vh;
-        }
-      }
     }
 
     .section-gap {

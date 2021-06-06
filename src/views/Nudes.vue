@@ -4,55 +4,50 @@
       <h2 class="headline-nudes">Nudes</h2>
       <div @click="onClickCircle" class="nav-circle"></div>
     </div>
-    <div class="nudes-wrapper--content flex-grid">
-      <div class="flex-row height-l">
-        <div class="photo only-phablet"></div>
-        <img class="photo" src="../assets/nd_009.jpg" alt="" srcset="" />
-      </div>
-      <div class="flex-row height-l">
-        <img class="photo" src="../assets/nd_011.jpg" alt="" srcset="" />
-        <img class="photo" src="../assets/nd_010.jpg" alt="" srcset="" />
-      </div>
-
-      <div class="section-gap"><hr></div>
-
-      <div class="flex-row height-m">
-        <img
-          class="photo full-width"
-          src="../assets/nd_004.jpg"
-          alt=""
-          srcset=""
-        />
-      </div>
-      <div class="flex-row height-s">
-        <img class="photo" src="../assets/nd_002.jpg" alt="" srcset="" />
-        <img class="photo" src="../assets/nd_003.jpg" alt="" srcset="" />
-      </div>
-
-      <div class="flex-row height-l">
-        <img
-          class="photo full-width"
-          src="../assets/nd_001.jpg"
-          alt=""
-          srcset=""
-        />
-      </div>
-
-      <div class="section-gap"><hr></div>
-
-
-      <div class="flex-row height-s">
-        <img class="photo" src="../assets/nd_006.jpg" alt="" srcset="" />
-        <img class="photo" src="../assets/nd_007.jpg" alt="" srcset="" />
-      </div>
-
-      <div class="flex-row height-l">
-        <img
-          class="photo full-width"
-          src="../assets/nd_005.jpg"
-          alt=""
-          srcset=""
-        />
+    <div class="nudes-wrapper--content">
+      <div class="carousel">
+        <div class="carousel-cell">
+          <img
+            src="../assets/nd_001.jpg"
+            alt="nudes one"
+          />
+        </div>
+        <div class="carousel-cell">
+           <img
+            src="../assets/nd_002.jpg"
+            alt="nudes one"
+          />
+        </div>
+        <div class="carousel-cell">
+          <img
+            src="../assets/nd_003.jpg"
+            alt="nudes one"
+          />
+        </div>
+        <div class="carousel-cell">
+           <img
+            src="../assets/nd_004.jpg"
+            alt="nudes one"
+          />
+        </div>
+        <div class="carousel-cell">
+          <img
+            src="../assets/nd_005.jpg"
+            alt="nudes one"
+          />
+        </div>
+        <div class="carousel-cell">
+          <img
+            src="../assets/nd_006.jpg"
+            alt="nudes one"
+          />
+        </div>
+        <div class="carousel-cell">
+           <img
+            src="../assets/nd_007.jpg"
+            alt="nudes one"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -65,6 +60,28 @@ export default {
     onClickCircle: function (e) {
       this.$emit("clickedCircle");
     },
+  },
+  mounted() {
+    var carousel = document.querySelector(".carousel");
+    var flkty = new Flickity(carousel, {
+      imagesLoaded: true,
+      percentPosition: false,
+      wrapAround: true
+    });
+
+    var imgs = carousel.querySelectorAll(".carousel-cell img");
+    // get transform property
+    var docStyle = document.documentElement.style;
+    var transformProp =
+      typeof docStyle.transform == "string" ? "transform" : "WebkitTransform";
+
+    flkty.on("scroll", function () {
+      flkty.slides.forEach(function (slide, i) {
+        var img = imgs[i];
+        var x = ((slide.target + flkty.x) * -1) / 3;
+        img.style[transformProp] = "translateX(" + x + "px)";
+      });
+    });
   },
 };
 </script>
@@ -103,7 +120,30 @@ export default {
   }
 
   &--content {
-    .photo {
+    * {
+      box-sizing: border-box;
+    }
+
+    .carousel {
+      background: #eee;
+    }
+
+    .carousel-cell {
+      margin-right: 20px;
+      overflow: hidden;
+    }
+
+    .carousel-cell img {
+      display: block;
+      height: 200px;
+    }
+
+    @media screen and (min-width: 768px) {
+      .carousel-cell img {
+        height: 400px;
+      }
+    }
+    /*  .photo {
       width: 100%;
       object-fit: cover;
       cursor: pointer;
@@ -116,7 +156,7 @@ export default {
           transform: scale(1.1);
         }
       }
-    }
+    } */
   }
 }
 </style>
